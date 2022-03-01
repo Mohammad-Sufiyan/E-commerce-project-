@@ -1,0 +1,7 @@
+_id,order_id,product_name,product_category,product_brand,product_price,product_color,product_size,product_tags,order_date,__v
+5f9582dddc2b5c0c7c19601d,true,Sport Shoes,gents,polo,599,black,L,shoes,2020-10-25T13:51:25.338Z,false
+5f9810ee562fb21a08cf3b90,true,Foreign Design Shoes,gents,polo,630,black,L,shoes,2020-10-27T12:22:06.309Z,false
+5fc0bc632a1c9c1e0057b3b3,true,Sport Shoes,gents,polo,599,black,L,shoes,2020-11-27T08:44:19.954Z,false
+5fc0bcda2a1c9c1e0057b3b4,true,Sport Shoes,gents,polo,599,black,L,shoes,2020-11-27T08:46:18.905Z,false
+5fc0da3fb1c55418c8993b86,true,Foreign Design Shoes,gents,polo,630,black,L,shoes,2020-11-27T10:51:43.476Z,false
+5fc0dab7b1c55418c8993b87,true,Foreign Design Shoes,gents,polo,630,black,L,shoes,2020-11-27T10:53:43.399Z,false

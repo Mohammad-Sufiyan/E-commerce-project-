@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+    <!--this is the voice taking url-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+    //retreiving Mode 
+    function Mode(){
+       var mode=document.getElementById("mode").value;
+       if(typeof(Storage)!=="undefined"){
+           sessionStorage.setItem("mode",mode);
+       }
+    }
+//this is the voice taking start
+
+  var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (isChrome) {
+    console.log('Voice input available');
+  } else {
+    console.log('Voice input unavailable');
+  
+  }
+
+    messageRecording = "Recording...",
+    recognition = null;
+   
+
+
+  function startRecognition(id) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 10;
+
+    recognition.onstart = function(event) {
+	
+    };
+    recognition.onresult = function(event) {
+      recognition.onend = null;
+     
+      var text = "";
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+          text += event.results[i][0].transcript;
+        }
+        setInput(text,id);
+       
+	 
+    };
+    recognition.onend = function() {
+      stopRecognition();
+    };
+    recognition.lang = "en-US";
+    recognition.start();
+    return id;
+  }
+
+  function stopRecognition() {
+    if (recognition) {
+      recognition.stop();
+      recognition = null;
+    }
+  }
+
+  function switchRecognition(id) {
+      stopRecognition();
+   var tempid=startRecognition(id);
+   return tempid;
+   
+  }
+
+  function setInput(text,id) {
+    document.getElementById(id).value=text;
+    
+    
+  }
+
+//end of voice input
+
+//this is the speaking function start
+function say(msg){
+
+    let speech=new SpeechSynthesisUtterance();
+    speech.lang="en-US";
+    speech.text=msg;
+    speech.volume=1;
+    speech.rate=1;
+    speech.pitch=1;
+    window.speechSynthesis.speak(speech);
+    
+}
+//this is the speaking end
+//calling this function body onload
+function callOnload(){
+    var temp,temp1,temp2,temp3,temp4,temp5,temp6;
+    Mode();
+ say('Welcome,  To my new web page Fashi. This is the E-commerce website. You can Buy many product like kids dresses, Mans dresses, and woman dresses. if you want to buy anything, then you need to login on fashi. if you are new user, then you need to register. and if you are old user, then you need to login. if you want to register on fashi, then you need to say, `register` and if you want to login on fashi, then you need to say, `Login`.    ');
+ var obj1=setTimeout(switchRecognition,30000,'in');
+  setInterval(redirectRegister,0);
+
+//taking input for username and password
+var set=50;
+var obj=setInterval(function()
+{
+            var inputVal=document.getElementById('in').value;
+ if(sessionStorage.getItem("mode")==="Blind Mode"){
+if((inputVal=='login') || (inputVal=='signin')){
+            document.getElementById('in').value='';
+            say('For login, please tell me, Your `username`');
+            switchRecognition('username');
+            var  set=300000000000000;
+  }
+ 
+if(temp!=true){
+            document.getElementById('in').value='some'; 
+}
+  
+            var username=document.getElementById('username').value;
+ if((username!='') && (inputVal!='')){
+            temp=true;
+            //username value copy to the hidden text temp4 used for false if condition
+            document.getElementById('usercopy').value=username;
+            //ended
+            document.getElementById('in').value='';
+            say('please tell me, your password');
+            switchRecognition('pass');
+
+
+  }
+}
+},set);
+//username and pass input ended
+
+//varifying username and password
+var obj2=setInterval(function()
+{
+
+var username=document.getElementById('username').value;
+var password=document.getElementById('pass').value;
+var inputVal=document.getElementById('in').value;
+//getting copy value in variable
+var usercopy=document.getElementById('usercopy').value;
+var passcopy=document.getElementById('passcopy').value;
+//getting ended
+if(sessionStorage.getItem("mode")==="Blind Mode"){
+if(temp1!=false)
+    {
+        if((username!='') && (password!='')){
+                clearInterval(obj);
+                //password value copy to the hidden text temp5 used to false if condition
+                document.getElementById('passcopy').value=password;
+                //end
+                say('please verify your username and password');
+                say(username+', Is this correct your, `username` say, `Yes` OR `No`');
+                switchRecognition('in');
+                 temp1=false;
+                temp2=true;   
+                temp3=true;                   }
+    }
+
+if((inputVal=='no') && (temp2==true)){
+    temp2=false;
+    document.getElementById('in').value='';
+    say('Again tell me, your username');
+    switchRecognition('username');
+    temp4=true;
+    
+
+  
+}else if((inputVal=='yes') && (temp3==true) || (username.localeCompare(usercopy)!=0)&& (temp4==true)){
+    temp2=false;
+    temp3=false;
+    temp4=false;
+    document.getElementById('in').value='';
+    say(password+', Is this correct your `password` say, `YES` OR `NO` ');
+    switchRecognition('in');
+   
+}else if((inputVal=='no') && (temp2==false)){
+   say('Again tell me, your password');
+    switchRecognition('pass');
+    document.getElementById('in').value='';
+    temp5=true;
+temp6=true;
+}else if((inputVal=='yes') && (temp3==false) || (password.localeCompare(passcopy)!=0) && (temp5==true)){
+    temp5=false;
+    say('if you want to login, please say `submit`.');
+    switchRecognition('in');
+    document.getElementById('in').value='';
+temp6=true;
+}else if((username!='') && (password!='') && (inputVal=='submit') && (temp6==true)){
+ temp6=false;
+ document.getElementById('somedata').submit();
+}
+}
+},100);
+//veryfying username password ended
+
+ }
+
+
+//ended body onload function
+
+//redirect to the register page
+function redirectRegister(){
+    var inputVal=document.getElementById('in').value;
+    //alert(inputVal);
+    if(inputVal!=''){
+        document.getElementById('in').blur();
+    }
+    if((inputVal=='register') || (inputVal=='registeration') || (inputVal=='signup')){
+        window.location.href="/registeration";
+    }
+}
+//redirect ended
+//submitting form to  the server 
+
+  
+
+
+// submitting form end
+
+     </script>
+</head>
+
+
+<body onload="callOnload()">
+   
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        
+        <%- include('./common/headerBody') %>
+
+
+        <div class="nav-item">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="" height="50px">
+                </a>
+            </div>
+            <div class="container">
+               
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Collection</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Men's</a></li>
+                                <li><a href="#">Women's</a></li>
+                                <li><a href="#">Kid's</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Shopping Cart</a></li>
+                                <li><a href="#">Checkout</a></li>
+                                <li><a href="#">Register</a></li>
+                                <li><a href="#">Home</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Login</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Form Section Begin -->
+
+    <!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>Login</h2>
+                        <% if(msg !=''){%>
+                            <p class="alert alert-danger" style="text-align: center;"><%= msg %></p> 
+                              <% } %>
+                        <form method="POST" action="/" id="somedata" role="form" >
+                            <input type="hidden" id="in" style="width: 100%;height: 20%">
+                            <div class="group-input">
+                                <label >Select your Mode</label>
+                           <select name="mode" id="mode" class="form-control" onchange="Mode()">
+                               <option value="Blind Mode">Blind Mode</option>
+                               <option value="User Mode">User Mode</option>
+                           </select>
+                              
+                            </div>
+                            <div class="group-input">
+                                <label for="username">Username or email address *</label>
+                                <input type="text" id="username"  name="username" class="form-control">
+                                <input type="hidden" id="usercopy" >
+                            </div>
+                            <div class="group-input">
+
+                                <label for="pass">Password *</label>
+                                <input type="password" id="pass" name="password" class="form-control">
+                                <input type="hidden" id="passcopy">
+                            </div>
+                            <div class="group-input gi-check">
+                                <div class="gi-more">
+                                    <label for="save-pass">
+                                        Save Password
+                                        <input type="checkbox" id="save-pass">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <a href="#" class="forget-pass">Forget your Password</a>
+                                </div>
+                            </div>
+                            <input type="submit" class="site-btn login-btn" value="Sign In">
+                        </form>
+                        <div class="switch-login">
+                            <a href="./registeration" class="or-login">Or Create An Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section End -->
+
+  
+
+    <!-- Footer Section Begin -->
+    <%- include('./common/footer') %>
+
+
+
+
+

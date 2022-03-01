@@ -1,0 +1,374 @@
+<%- include("./common/header") %>
+
+<body id="bodyLoader">
+    <% if(featureProData.length){
+        featureProData.forEach(function(row){  
+           if(row.product_category=="ladies" ||row.product_category=="gents" ||row.product_category=="kids"){
+        %>
+
+     <!-- Modal -->
+     <div class="modal fade" id="myModal<%= row._id %>" >
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content" >
+            <div class="modal-header">
+            <h4 class="modal-title">Veiw Product</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" >
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="<%= row.product_image.toString().replace('public\\','\\') %>" alt="" width="100%" height="70%">
+                    </div>
+                    <div class="col-sm-6" style="float: left;">
+                        <b style="font-size: 22px;color: #E7AB3C;"> <%= row.product_name %> </b><br>
+                        <b style="font-size: 22px;color: #E7AB3C;">₹  <%= row.product_price %></b><br>
+                        <hr>
+                        <p style="font-size: 16px;">
+                            <%= row.product_description %> </p>
+                    </div><br><br>
+
+                    <a onclick="showMsg()" href="/shopping-cart/addProduct/<%= row.product_name %>" class="btn" style="margin-left: 50%;font-size: 18px;width: 30%;border-radius: 15px;background-color: #E7AB3C;">Add to cart</a>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal" style="font-size: 18px;border-radius: 15px;background-color: #E7AB3C;">Close</button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    <!--Model END-->
+    
+<% }})} %>
+  
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <%- include("./common/headerBody") %>
+
+
+        <div class="nav-item">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="" height="50px">
+                </a>
+            </div> 
+            <div class="container" >
+                
+                   <nav class="nav-menu mobile-menu" >
+                    
+                    <ul>
+                        <li class="active"><a href="/home">Home</a></li>
+                        <li><a href="/shop">Shop</a></li>
+                        <li><a href="#">Collection</a>
+                            <ul class="dropdown">
+                                <li><a href="/shop/ladies">Ladies</a></li>
+                                <li><a href="/shop/gents">Gents</a></li>
+                                <li><a href="/shop/kids">Kid's</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="/shopping-cart">Shopping Cart</a></li>
+                                <li><a href="/check-out">Checkout</a></li>
+=                                <li><a href="/registeration">Register</a></li>
+                                <li><a href="/home">Home</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-items set-bg" data-setbg="/images/hero-1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="/shop" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="/images/hero-2.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="#" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                      <img src="/images/banner-1.jpg" alt="">
+                        <div class="inner-text">
+                            <a href="/shop/gents"><h4>Gents</h4></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="/images/banner-2.jpg" alt="">
+                        <div class="inner-text">
+                            <a href="/shop/ladies">   <h4>Ladies</h4></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                       <img src="/images/banner-3.jpg" alt="">
+                        <div class="inner-text">
+                            <a href="/shop/kids"><h4>Kid’s</h4></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="images/products/women-large.jpg">
+                        <h2>Ladies</h2>
+                        <a href="/shop/ladies">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active"><a href="/home/Ladies/Cloth" >Clothings</a></li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <% if(featureProData.length){
+                            featureProData.forEach(function(row){  
+                               if(row.product_category=="ladies"){
+                            %>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="<%= row.product_image.toString().replace('public\\','\\') %>" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a  data-toggle="modal" data-target="#myModal<%= row._id %>" style="cursor: pointer;">+ Quick View</a></li>
+                                    <li class="w-icon"><a onclick="showMsg()" href="/shopping-cart/addProduct/<%= row.product_name %>" class="btn"><i class="fa fa-cart-plus fa-xl"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"><%= row.product_tags %></div>
+                                <a href="#">
+                                    <h5><%= row.product_name %></h5>
+                                </a>
+                                <div class="product-price">
+                                    <%= row.product_price %>
+                                    <% var amnt=row.product_price %>
+                                    <span><%= amnt+385 %></span>
+                                </div>
+                            </div>
+                        </div>
+
+                       <% }})} %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+
+    <!-- Deal Of The Week Section Begin-->
+    <section class="deal-of-week set-bg spad" data-setbg="images/time-bg.jpg">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <div class="section-title">
+                    <h2>Deal Of The Week</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
+                        consectetur adipisicing elit </p>
+                    <div class="product-price">
+                        $35.00
+                        <span>/ HanBag</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="cd-item">
+                        <span>56</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>12</span>
+                        <p>Hrs</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>40</span>
+                        <p>Mins</p>
+                    </div>
+                    <div class="cd-item">
+                        <span>52</span>
+                        <p>Secs</p>
+                    </div>
+                </div>
+                <a href="#" class="primary-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- Deal Of The Week Section End -->
+
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <ul>
+                          <li class="active"> <a href="/home/Gents/Cloth">Clothings</a></li> 
+                 
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <% if(featureProData.length){
+                            featureProData.forEach(function(row){  
+                               if(row.product_category=="gents"){
+                            %>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="<%= row.product_image.toString().replace('public\\','\\') %>" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a  data-toggle="modal" data-target="#myModal<%= row._id %>" style="cursor: pointer;">+ Quick View</a></li>
+                                    <li class="w-icon"><a onclick="showMsg()" href="/shopping-cart/addProduct/<%= row.product_name %>" class="btn"><i class="fa fa-cart-plus fa-xl"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"><%= row.product_tags %></div>
+                                <a href="#">
+                                    <h5><%= row.product_name %></h5>
+                                </a>
+                                <div class="product-price">
+                                    <%= row.product_price %>
+                                    <% var amnt=row.product_price %>
+                                    <span><%= amnt+385 %></span>
+                                </div>
+                            </div>
+                        </div>
+                   
+
+                       <% }})} %>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="images/products/man-large.jpg">
+                        <h2>Gents</h2>
+                        <a href="/shop/gents">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+
+      <!-- kids Banner Section Begin -->
+      <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="images/products/kid-large.jpg">
+                        <h2>Kid’s</h2>
+                        <a href="/shop/kids">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                          <li class="active"> <a href="/home/Kids/Cloth"> Clothings</a></li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <% if(featureProData.length){
+                            featureProData.forEach(function(row){  
+                               if(row.product_category=="kids"){
+                            %>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="<%= row.product_image.toString().replace('public\\','\\') %>" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a  data-toggle="modal" data-target="#myModal<%= row._id %>" style="cursor: pointer;">+ Quick View</a></li>
+                                    <li class="w-icon"><a onclick="showMsg()" href="/shopping-cart/addProduct/<%= row.product_name %>" class="btn"><i class="fa fa-cart-plus fa-xl"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"><%= row.product_tags %></div>
+                                <a href="#">
+                                    <h5><%= row.product_name %></h5>
+                                </a>
+                                <div class="product-price">
+                                    <%= row.product_price %>
+                                    <% var amnt=row.product_price %>
+                                    <span><%= amnt+385 %></span>
+                                </div>
+                            </div>
+                        </div>
+
+                       <% }})} %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- kids Banner Section End -->
+    <script>
+        function showMsg(){
+            alert("Product added successfully");
+        }
+        </script>
+   <%- include('./common/footer') %>
